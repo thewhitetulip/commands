@@ -5,32 +5,38 @@
 package commands
 
 import (
-	. "github.com/limetext/backend"
+	"github.com/limetext/backend"
 )
 
 type (
+
+	//Undo command will revert the last change
 	Undo struct {
-		BypassUndoCommand
+		backend.BypassUndoCommand
 		hard bool
 	}
+
+	//Redo command will redo the last chnage
 	Redo struct {
-		BypassUndoCommand
+		backend.BypassUndoCommand
 		hard bool
 	}
 )
 
-func (c *Undo) Run(v *View, e *Edit) error {
+//Run will execute the Undo command
+func (c *Undo) Run(v *backend.View, e *backend.Edit) error {
 	v.UndoStack().Undo(c.hard)
 	return nil
 }
 
-func (c *Redo) Run(v *View, e *Edit) error {
+//Run will execute the Redo command
+func (c *Redo) Run(v *backend.View, e *backend.Edit) error {
 	v.UndoStack().Redo(c.hard)
 	return nil
 }
 
 func init() {
-	register([]Command{
+	register([]backend.Command{
 		&Undo{hard: true},
 		&Redo{hard: true},
 	})

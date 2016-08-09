@@ -7,36 +7,45 @@ package commands
 import (
 	"fmt"
 
-	. "github.com/limetext/backend"
+	"github.com/limetext/backend"
 )
 
 type (
+
+	//Save command will save the currently
+	//opened file to the disk
 	Save struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
 
+	//PromptSaveAs command will let us save
+	//the currently opened
+	//file with a different file name
 	PromptSaveAs struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
 
+	//SaveAll command will save all the opene files
 	SaveAll struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
 )
 
-func (c *Save) Run(v *View, e *Edit) error {
+//Run will execute the Save command
+func (c *Save) Run(v *backend.View, e *backend.Edit) error {
 	err := v.Save()
 	if err != nil {
-		GetEditor().Frontend().ErrorMessage(fmt.Sprintf("Failed to save %s:n%s", v.FileName(), err))
+		backend.GetEditor().Frontend().ErrorMessage(fmt.Sprintf("Failed to save %s:n%s", v.FileName(), err))
 		return err
 	}
 	return nil
 }
 
-func (c *PromptSaveAs) Run(v *View, e *Edit) error {
+//Run will execute the PromptSaveAs command
+func (c *PromptSaveAs) Run(v *backend.View, e *backend.Edit) error {
 	dir := viewDirectory(v)
-	fe := GetEditor().Frontend()
-	files := fe.Prompt("Save file", dir, PROMPT_SAVE_AS)
+	fe := backend.GetEditor().Frontend()
+	files := fe.Prompt("Save file", dir, backend.PROMPT_SAVE_AS)
 	if len(files) == 0 {
 		return nil
 	}
@@ -49,8 +58,9 @@ func (c *PromptSaveAs) Run(v *View, e *Edit) error {
 	return nil
 }
 
-func (c *SaveAll) Run(w *Window) error {
-	fe := GetEditor().Frontend()
+//Run will execute the SaveAll command
+func (c *SaveAll) Run(w *backend.Window) error {
+	fe := backend.GetEditor().Frontend()
 	for _, v := range w.Views() {
 		if err := v.Save(); err != nil {
 			fe.ErrorMessage(fmt.Sprintf("Failed to save %s:n%s", v.FileName(), err))
@@ -61,7 +71,7 @@ func (c *SaveAll) Run(w *Window) error {
 }
 
 func init() {
-	register([]Command{
+	register([]backend.Command{
 		&Save{},
 		&PromptSaveAs{},
 		&SaveAll{},

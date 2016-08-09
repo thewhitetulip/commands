@@ -4,35 +4,40 @@
 
 package commands
 
-import . "github.com/limetext/backend"
+import "github.com/limetext/backend"
 
 type (
+	//NopApplication is
 	NopApplication struct {
-		BypassUndoCommand
+		backend.BypassUndoCommand
 	}
-
+	//NopWindow is
 	NopWindow struct {
-		BypassUndoCommand
+		backend.BypassUndoCommand
 	}
-
+	//NopText is
 	NopText struct {
-		BypassUndoCommand
+		backend.BypassUndoCommand
 	}
 )
 
+//Run will execute the NopApplication command
 func (c *NopApplication) Run() error {
 	return nil
 }
 
+//IsChecked is
 func (c *NopApplication) IsChecked() bool {
 	return false
 }
 
-func (c *NopWindow) Run(w *Window) error {
+//Run will execute the NopWindow command
+func (c *NopWindow) Run(w *backend.Window) error {
 	return nil
 }
 
-func (c *NopText) Run(v *View, e *Edit) error {
+//Run will execute the NopText command
+func (c *NopText) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 

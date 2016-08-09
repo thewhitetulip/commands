@@ -8,16 +8,20 @@ import (
 	"strings"
 	"unicode"
 
-	. "github.com/limetext/backend"
+	"github.com/limetext/backend"
 )
 
 type (
+	//ToggleComment will add comment to the selection of
+	//lines if there is no comment, or it'll remove
+	//commen to the line selection if a comment is already present
 	ToggleComment struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
 )
 
-func (c *ToggleComment) Run(v *View, e *Edit) error {
+//Run will execute the ToggleComment command
+func (c *ToggleComment) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Comment the line if we only have a cursor.
 	// TODO: Expand the selection after altering it.
 	// TODO: Align the comment characters for multiline selections.
@@ -48,7 +52,7 @@ func (c *ToggleComment) Run(v *View, e *Edit) error {
 }
 
 func init() {
-	register([]Command{
+	register([]backend.Command{
 		&ToggleComment{},
 	})
 }

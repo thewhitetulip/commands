@@ -8,25 +8,29 @@ import (
 	"sort"
 	"strings"
 
-	. "github.com/limetext/backend"
+	"github.com/limetext/backend"
 	"github.com/limetext/text"
 )
 
 type (
+	//Copy command will be used to copy
+	//the selected lines of text to the clipboard
 	Copy struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
-
+	//Cut command will be used to cut the selected lines
+	//from the view
 	Cut struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
-
+	//Paste command will be used to paste the clipboard
+	//contents into a view
 	Paste struct {
-		DefaultCommand
+		backend.DefaultCommand
 	}
 )
 
-func getRegions(v *View, cut bool) *text.RegionSet {
+func getRegions(v *backend.View, cut bool) *text.RegionSet {
 	rs := &text.RegionSet{}
 	regions := v.Sel().Regions()
 	sort.Sort(regionSorter(regions))
@@ -44,7 +48,7 @@ func getRegions(v *View, cut bool) *text.RegionSet {
 	return rs
 }
 
-func getSelSubstrs(v *View, rs *text.RegionSet) []string {
+func getSelSubstrs(v *backend.View, rs *text.RegionSet) []string {
 	var add, s1 string
 	s := make([]string, len(rs.Regions()))
 	for i, r := range rs.Regions() {
@@ -58,16 +62,18 @@ func getSelSubstrs(v *View, rs *text.RegionSet) []string {
 	return s
 }
 
-func (c *Copy) Run(v *View, e *Edit) error {
+//Run will execute the Copy command when initialized
+func (c *Copy) Run(v *backend.View, e *backend.Edit) error {
 	rs := getRegions(v, false)
 	s := getSelSubstrs(v, rs)
 
-	GetEditor().SetClipboard(strings.Join(s, "\n"))
+	backend.GetEditor().SetClipboard(strings.Join(s, "\n"))
 
 	return nil
 }
 
-func (c *Cut) Run(v *View, e *Edit) error {
+//Run will execute the Cut command when initialized
+func (c *Cut) Run(v *backend.View, e *backend.Edit) error {
 	s := getSelSubstrs(v, getRegions(v, false))
 
 	rs := getRegions(v, true)
@@ -77,16 +83,17 @@ func (c *Cut) Run(v *View, e *Edit) error {
 		v.Erase(e, r)
 	}
 
-	GetEditor().SetClipboard(strings.Join(s, "\n"))
+	backend.GetEditor().SetClipboard(strings.Join(s, "\n"))
 
 	return nil
 }
 
-func (c *Paste) Run(v *View, e *Edit) error {
+//Run will execute the Paste command when initialized
+func (c *Paste) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Paste the entire line on the line before the cursor if a
 	//		 line was autocopied.
 
-	ed := GetEditor()
+	ed := backend.GetEditor()
 
 	rs := &text.RegionSet{}
 	regions := v.Sel().Regions()
@@ -100,7 +107,7 @@ func (c *Paste) Run(v *View, e *Edit) error {
 }
 
 func init() {
-	register([]Command{
+	register([]backend.Command{
 		&Copy{},
 		&Cut{},
 		&Paste{},
