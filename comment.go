@@ -13,7 +13,8 @@ import (
 
 type (
 	// ToggleComment converts the current selection into a comment,
-	// or, if it is already a comment, converts it back into plain text
+	// or add a comment depending if the selection contains any commented lines
+	// if it is already a comment, converts it back into plain text
 	// it'll add the comment symbol at the first character of the selection
 	// regardless if the line is already commented.
 	// While removing a comment during a toggle, it'll follow the same logic as above

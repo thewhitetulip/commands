@@ -6,14 +6,6 @@
 
 This package contains the commands which Lime will use. A command is anything that peforms some action in the editor(like move lines, save file, open file etc).
 
-Lime is designed with the goal of having a clear frontend and backend separation to allow and hopefully simplify the creation of multiple frontend versions.
-
-The Lime Architecture is simple:
-1. `backend`: Contain all the code that defines the text editor. The Windows, Folders, Files etc.
-2. `front end`: The UI part which will import the backend. When you click on any menu item, the _command_ for that item will be executed via the _Run_ method which you declare. The menubar, the Editor where we will type text into etc
-3. `commands`: Utilities which will execute whenever you interact with the UI. 
-
-
 ##Brief overview of Commands
 
 You first build a type of the command which you are writing. 
@@ -33,6 +25,13 @@ Each command has a `Run` method which is executed when the command is invoked. P
         //Do something here
     }
 
+Commands need to be registered with the backend via the init function.
+
+    func init() {
+        register([]backend.Command{
+            &SwapLineUp{},
+        })
+    }
 #Imlementing custom commands
 
 If you are interested in implementing your own command, look into the [Implementing commands wiki page](https://github.com/limetext/lime/wiki/Implementing-commands).
