@@ -39,10 +39,10 @@ type (
 		ClipToLine bool
 	}
 
-	//MoveByType Specifies the type of "move" operation
+	// MoveByType Specifies the type of "move" operation
 	MoveByType int
 
-	//MoveToType Specifies the type of "move_to" operation to perform
+	// MoveToType Specifies the type of "move_to" operation to perform
 	MoveToType int
 
 	// MoveTo Command moves or extends the current selection to the specified location
@@ -117,7 +117,7 @@ func moveAction(v *backend.View, extend bool, transform func(r text.Region) int)
 	sel.AddAll(r)
 }
 
-//Set will define the type of move
+// Set will define the type of move
 func (mt *MoveToType) Set(v interface{}) error {
 	switch to := v.(string); to {
 	case "eol":
@@ -136,7 +136,7 @@ func (mt *MoveToType) Set(v interface{}) error {
 	return nil
 }
 
-//Run will execute the MoveTo command
+// Run will execute the MoveTo command
 func (c *MoveTo) Run(v *backend.View, e *backend.Edit) error {
 	switch c.To {
 	case EOL:
@@ -226,7 +226,7 @@ func (c *MoveTo) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the MoveByType command
+// Set will set what type of move it is
 func (m *MoveByType) Set(v interface{}) error {
 	switch by := v.(string); by {
 	case "lines":
@@ -251,7 +251,7 @@ func (m *MoveByType) Set(v interface{}) error {
 	return nil
 }
 
-//Run will execute the Move command
+// Run will execute the Move command
 func (c *Move) Run(v *backend.View, e *backend.Edit) error {
 	p := util.Prof.Enter("move.run.action")
 	defer p.Exit()
@@ -342,7 +342,7 @@ func (c *Move) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Default returns the default seprators
+// Default returns the default seprators
 func (c *Move) Default(key string) interface{} {
 	if key == "separators" {
 		return backend.DEFAULT_SEPARATORS
@@ -376,7 +376,7 @@ func reverse(s string) string {
 	return string(r)
 }
 
-//Run will execute the ScrollLines command
+// Run will execute the ScrollLines command
 func (c *ScrollLines) Run(v *backend.View, e *backend.Edit) error {
 	ed := backend.GetEditor()
 	fe := ed.Frontend()

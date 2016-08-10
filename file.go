@@ -1,6 +1,6 @@
-// Copyright 2014 The lime Authors.
-// Use of this source code is governed by a 2-clause
-// BSD-style license that can be found in the LICENSE file.
+//  Copyright 2014 The lime Authors.
+//  Use of this source code is governed by a 2-clause
+//  BSD-style license that can be found in the LICENSE file.
 
 package commands
 
@@ -13,25 +13,25 @@ import (
 )
 
 type (
-	//NewFile command will be used to create a new file
+	// NewFile command will be used to create a new file
 	NewFile struct {
 		backend.DefaultCommand
 	}
-	//PromptOpenFile command will be used to prompt opening
-	//an existing file from the filesystem
+	// PromptOpenFile command will be used to prompt opening
+	// an existing file from the filesystem
 	PromptOpenFile struct {
 		backend.DefaultCommand
 	}
 )
 
-//Run will execute the NewFile command
+// Run will execute the NewFile command
 func (c *NewFile) Run(w *backend.Window) error {
 	ed := backend.GetEditor()
 	ed.ActiveWindow().NewFile()
 	return nil
 }
 
-//Run will execute the PromptOpenFile command
+// Run will execute the PromptOpenFile command
 func (o *PromptOpenFile) Run(w *backend.Window) error {
 	dir := viewDirectory(w.ActiveView())
 	fe := backend.GetEditor().Frontend()

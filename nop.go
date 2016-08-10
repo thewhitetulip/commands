@@ -7,21 +7,21 @@ package commands
 import "github.com/limetext/backend"
 
 type (
-	//NopApplication is
+	// NopApplication is
 	NopApplication struct {
 		backend.BypassUndoCommand
 	}
-	//NopWindow is
+	// NopWindow is
 	NopWindow struct {
 		backend.BypassUndoCommand
 	}
-	//NopText is
+	// NopText is
 	NopText struct {
 		backend.BypassUndoCommand
 	}
 )
 
-//Run will execute the NopApplication command
+// Run will execute the NopApplication command
 func (c *NopApplication) Run() error {
 	return nil
 }
@@ -31,12 +31,12 @@ func (c *NopApplication) IsChecked() bool {
 	return false
 }
 
-//Run will execute the NopWindow command
+// Run will execute the NopWindow command
 func (c *NopWindow) Run(w *backend.Window) error {
 	return nil
 }
 
-//Run will execute the NopText command
+// Run will execute the NopText command
 func (c *NopText) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }

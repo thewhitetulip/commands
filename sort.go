@@ -72,7 +72,7 @@ func (s textSorter) Less(i, j int) bool {
 	return textA < textB
 }
 
-//Run will execute the SortLines command
+// Run will execute the SortLines command
 func (c *SortLines) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	// Used as a set of int
@@ -119,7 +119,7 @@ func (c *SortLines) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run executes the sort slection command
+// Run executes the sort slection command
 func (c *SortSelection) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	regions := make([]text.Region, sel.Len())

@@ -17,7 +17,7 @@ type (
 	}
 )
 
-//Run will execute the transpose command
+// Run will execute the transpose command
 func (c *Transpose) Run(v *backend.View, e *backend.Edit) error {
 	/*
 		Correct behavior of Transpose:

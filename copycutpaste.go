@@ -13,18 +13,18 @@ import (
 )
 
 type (
-	//Copy command will be used to copy
-	//the selected lines of text to the clipboard
+	// Copy copies the current selection to the clipboard.
+	// Lime has multiple selection, and Copy concatenates selections,
+	// top to bottom of the file, inserting a newline between each
 	Copy struct {
 		backend.DefaultCommand
 	}
-	//Cut command will be used to cut the selected lines
-	//from the view
+	// Cut copies the current selection to the clipboard and removes it from the buffer
 	Cut struct {
 		backend.DefaultCommand
 	}
-	//Paste command will be used to paste the clipboard
-	//contents into a view
+	// Paste command will be used to paste the clipboard
+	// contents into a view
 	Paste struct {
 		backend.DefaultCommand
 	}
@@ -62,7 +62,7 @@ func getSelSubstrs(v *backend.View, rs *text.RegionSet) []string {
 	return s
 }
 
-//Run will execute the Copy command when initialized
+// Run will execute the Copy command when initialized
 func (c *Copy) Run(v *backend.View, e *backend.Edit) error {
 	rs := getRegions(v, false)
 	s := getSelSubstrs(v, rs)
@@ -72,7 +72,7 @@ func (c *Copy) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the Cut command when initialized
+// Run will execute the Cut command when initialized
 func (c *Cut) Run(v *backend.View, e *backend.Edit) error {
 	s := getSelSubstrs(v, getRegions(v, false))
 
@@ -88,7 +88,7 @@ func (c *Cut) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the Paste command when initialized
+// Run will execute the Paste command when initialized
 func (c *Paste) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Paste the entire line on the line before the cursor if a
 	//		 line was autocopied.

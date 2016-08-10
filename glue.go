@@ -42,19 +42,19 @@ type (
 	}
 )
 
-//Run wil execute the MarkUndoGroupsForGluing command
+// Run wil execute the MarkUndoGroupsForGluing command
 func (c *MarkUndoGroupsForGluing) Run(v *backend.View, e *backend.Edit) error {
 	v.Settings().Set(limeCmdMark, v.UndoStack().Position())
 	return nil
 }
 
-//Run wil execute the UnmarkUndoGroupsForGluing command
+// Run wil execute the UnmarkUndoGroupsForGluing command
 func (c *UnmarkUndoGroupsForGluing) Run(v *backend.View, e *backend.Edit) error {
 	v.Settings().Erase(limeCmdMark)
 	return nil
 }
 
-//Run wil execute the GlueMarkedUndoGroups command
+// Run wil execute the GlueMarkedUndoGroups command
 func (c *GlueMarkedUndoGroups) Run(v *backend.View, e *backend.Edit) error {
 	pos := v.UndoStack().Position()
 	mark, ok := v.Settings().Get(limeCmdMark).(int)
@@ -67,7 +67,7 @@ func (c *GlueMarkedUndoGroups) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run wil execute the MaybeMarkUndoGroupsForGluing command
+// Run wil execute the MaybeMarkUndoGroupsForGluing command
 func (c *MaybeMarkUndoGroupsForGluing) Run(v *backend.View, e *backend.Edit) error {
 	if !v.Settings().Has(limeCmdMark) {
 		v.Settings().Set(limeCmdMark, v.UndoStack().Position())

@@ -12,19 +12,22 @@ import (
 )
 
 type (
-	//ToggleComment will add comment to the selection of
-	//lines if there is no comment, or it'll remove
-	//commen to the line selection if a comment is already present
+	// ToggleComment converts the current selection into a comment,
+	// or, if it is already a comment, converts it back into plain text
+	// it'll add the comment symbol at the first character of the selection
+	// regardless if the line is already commented.
+	// While removing a comment during a toggle, it'll follow the same logic as above
+	// and it'll only remove one layer of comments
 	ToggleComment struct {
 		backend.DefaultCommand
 	}
 )
 
-//Run will execute the ToggleComment command
+// Run will execute the ToggleComment command
 func (c *ToggleComment) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Comment the line if we only have a cursor.
 	// TODO: Expand the selection after altering it.
-	// TODO: Align the comment characters for multiline selections.
+	// TODO: Align the comment characters for multiline selection.
 	// TODO: Get the comment value from the Textmate files.
 	comm := "//"
 

@@ -46,7 +46,7 @@ type (
 	}
 )
 
-//Run will execute the TitleCase command
+// Run will execute the TitleCase command
 func (c *TitleCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -59,7 +59,7 @@ func (c *TitleCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the SwapCase command
+// Run will execute the SwapCase command
 func (c *SwapCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -81,7 +81,7 @@ func (c *SwapCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the UpperCase command
+// Run will execute the UpperCase command
 func (c *UpperCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -94,7 +94,7 @@ func (c *UpperCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run will execute the LowerCase command
+// Run will execute the LowerCase command
 func (c *LowerCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
