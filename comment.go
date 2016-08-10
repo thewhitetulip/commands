@@ -12,13 +12,12 @@ import (
 )
 
 type (
-	// ToggleComment converts the current selection into a comment,
-	// or add a comment depending if the selection contains any commented lines
-	// if it is already a comment, converts it back into plain text
-	// it'll add the comment symbol at the first character of the selection
-	// regardless if the line is already commented.
-	// While removing a comment during a toggle, it'll follow the same logic as above
-	// and it'll only remove one layer of comments
+	// ToggleComment toggles the comment status for the current selection.
+	// If the current selection has any content which is not currently contained within a comment, the
+	// entire selection is commented out, with existing comments being commented by an extra level.
+	// If the current selection has only content contained within comments, all of the comments are
+	// reduced by one level. All lines containing only whitespace are ignored in every case.
+
 	ToggleComment struct {
 		backend.DefaultCommand
 	}
