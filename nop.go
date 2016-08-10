@@ -26,7 +26,8 @@ func (c *NopApplication) Run() error {
 	return nil
 }
 
-//IsChecked is
+// IsChecked will represent if the command will
+// contain a checkbox in the UI
 func (c *NopApplication) IsChecked() bool {
 	return false
 }
