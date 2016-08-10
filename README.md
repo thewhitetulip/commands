@@ -33,7 +33,7 @@ Commands need to be registered with the backend via the init function.
         })
     }
 
-#Imlementing custom commands
+#Implementing custom commands
 
 If you are interested in implementing your own command, look into the [Implementing commands wiki page](https://github.com/limetext/lime/wiki/Implementing-commands).
 
