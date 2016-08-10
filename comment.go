@@ -17,7 +17,6 @@ type (
 	// entire selection is commented out, with existing comments being commented by an extra level.
 	// If the current selection has only content contained within comments, all of the comments are
 	// reduced by one level. All lines containing only whitespace are ignored in every case.
-
 	ToggleComment struct {
 		backend.DefaultCommand
 	}
