@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/limetext/commands)](https://goreportcard.com/report/github.com/limetext/commands)
 [![GoDoc](https://godoc.org/github.com/limetext/commands?status.svg)](https://godoc.org/github.com/limetext/commands)
 
-This package contains the commands which Lime will use. A command is anything that peforms some action in the editor(like move lines, save file, open file etc).
+This package contains commands made accessible to frontends and plugins. They come in three flavours: [`ApplicationCommand`](https://godoc.org/github.com/limetext/backend#ApplicationCommand)s, [`WindowCommand`](https://godoc.org/github.com/limetext/backend#WindowCommand)s, and [`TextCommand`](https://godoc.org/github.com/limetext/backend#TextCommand)s."
 
 ##Brief overview of Commands
 
@@ -18,10 +18,10 @@ You first build a type of the command which you are writing.
         }
     )
 
-Each command has a `Run` method which is executed when the command is invoked. Please note that the command needs to be invoked by the UI for it to work.
+Each command has a `Run` method which is executed when the command is invoked. Please note that the command needs to be invoked by the frontend for it to work.
 
-    //Run executes the SwapLineUp command
-    func (c *SwapLineUp) Run(v *backend.View, e *backend.Edit) error {
+    //Run executes the DoSomething command
+    func (c *DoSomething) Run(v *backend.View, e *backend.Edit) error {
         //Do something here
     }
 
@@ -29,9 +29,10 @@ Commands need to be registered with the backend via the init function.
 
     func init() {
         register([]backend.Command{
-            &SwapLineUp{},
+            &DoSomething{},
         })
     }
+
 #Imlementing custom commands
 
 If you are interested in implementing your own command, look into the [Implementing commands wiki page](https://github.com/limetext/lime/wiki/Implementing-commands).
