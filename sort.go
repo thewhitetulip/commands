@@ -14,7 +14,7 @@ import (
 
 type (
 	// SortLines Command sorts all lines
-	// intersecting a selection region
+	// intersecting a selection region.
 	SortLines struct {
 		backend.DefaultCommand
 		CaseSensitive    bool
@@ -24,7 +24,7 @@ type (
 
 	// SortSelection Command sorts contents
 	// of each selection region with respect to
-	// each other
+	// each other.
 	SortSelection struct {
 		backend.DefaultCommand
 		CaseSensitive    bool
@@ -32,10 +32,10 @@ type (
 		RemoveDuplicates bool
 	}
 
-	// Helper type to sort Regions by theirs positions
+	// Helper type to sort Regions by theirs positions.
 	regionSorter []text.Region
 
-	// Helper struct to sort strings
+	// Helper struct to sort strings.
 	textSorter struct {
 		texts         []string
 		caseSensitive bool
@@ -72,7 +72,7 @@ func (s textSorter) Less(i, j int) bool {
 	return textA < textB
 }
 
-// Run will execute the SortLines command
+// Run executes the SortLines command.
 func (c *SortLines) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	// Used as a set of int
@@ -119,7 +119,7 @@ func (c *SortLines) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run executes the sort slection command
+// Run executes the sort slection command.
 func (c *SortSelection) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	regions := make([]text.Region, sel.Len())
@@ -155,7 +155,7 @@ func (c *SortSelection) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Remove duplicate ones from a sorted slice of string
+// Remove duplicate ones from a sorted slice of string.
 func removeDuplicates(caseSensitive bool, xs []string) []string {
 	var i, j int
 	for j < len(xs) {

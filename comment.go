@@ -22,7 +22,7 @@ type (
 	}
 )
 
-// Run will execute the ToggleComment command
+// Run executes the ToggleComment command.
 func (c *ToggleComment) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Comment the line if we only have a cursor.
 	// TODO: Expand the selection after altering it.

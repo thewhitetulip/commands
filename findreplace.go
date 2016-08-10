@@ -43,7 +43,7 @@ var (
 	replaceText string
 )
 
-// Run will execute the FindUnderExpand command
+// Run executes the FindUnderExpand command.
 func (c *FindUnderExpand) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	rs := sel.Regions()
@@ -94,7 +94,7 @@ func nextSelection(v *backend.View, search string) (text.Region, error) {
 	return text.Region{-1, -1}, errors.New("Selection not Found")
 }
 
-// Run will execute the FindNext command
+// Run executes the FindNext command.
 func (c *FindNext) Run(v *backend.View, e *backend.Edit) error {
 	/*
 		Correct behavior of FindNext:
@@ -121,7 +121,7 @@ func (c *FindNext) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the ReplaceNext command
+// Run executes the ReplaceNext command.
 func (c *ReplaceNext) Run(v *backend.View, e *backend.Edit) error {
 	// use selection function from find.go to get the next region
 	selection, err := nextSelection(v, string(lastSearch))

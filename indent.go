@@ -23,7 +23,7 @@ type (
 	}
 )
 
-// Run will execute the Indent command
+// Run executes the Indent command.
 func (c *Indent) Run(v *backend.View, e *backend.Edit) error {
 	indent := "\t"
 	if t := v.Settings().Bool("translate_tabs_to_spaces", false); t {
@@ -44,7 +44,7 @@ func (c *Indent) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the Unindent command
+// Run executes the Unindent command.
 func (c *Unindent) Run(v *backend.View, e *backend.Edit) error {
 	tabSize := v.Settings().Int("tab_size", 4)
 	sel := v.Sel()

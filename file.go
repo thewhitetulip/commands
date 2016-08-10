@@ -13,25 +13,25 @@ import (
 )
 
 type (
-	// NewFile command will be used to create a new file
+	// NewFile command creates a new file.
 	NewFile struct {
 		backend.DefaultCommand
 	}
-	// PromptOpenFile command will be used to prompt opening
-	// an existing file from the filesystem
+	// PromptOpenFile command prompts opening
+	// an existing file from the filesystem.
 	PromptOpenFile struct {
 		backend.DefaultCommand
 	}
 )
 
-// Run will execute the NewFile command
+// Run executes the NewFile command.
 func (c *NewFile) Run(w *backend.Window) error {
 	ed := backend.GetEditor()
 	ed.ActiveWindow().NewFile()
 	return nil
 }
 
-// Run will execute the PromptOpenFile command
+// Run executes the PromptOpenFile command.
 func (o *PromptOpenFile) Run(w *backend.Window) error {
 	dir := viewDirectory(w.ActiveView())
 	fe := backend.GetEditor().Frontend()

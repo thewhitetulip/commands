@@ -12,26 +12,26 @@ import (
 
 type (
 
-	// Save command will save the currently
-	// opened file to the disk
+	// Save command writes the currently
+	// opened file to the disk.
 	Save struct {
 		backend.DefaultCommand
 	}
 
-	// PromptSaveAs command will let us save
-	// the currently opened
-	// file with a different file name
+	// PromptSaveAs command lets us save
+	// the currently active
+	// file with a different name.
 	PromptSaveAs struct {
 		backend.DefaultCommand
 	}
 
-	// SaveAll command will save all the opene files
+	// SaveAll command saves all the opene files to the disk.
 	SaveAll struct {
 		backend.DefaultCommand
 	}
 )
 
-// Run will execute the Save command
+// Run executes the Save command.
 func (c *Save) Run(v *backend.View, e *backend.Edit) error {
 	err := v.Save()
 	if err != nil {
@@ -41,7 +41,7 @@ func (c *Save) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the PromptSaveAs command
+// Run executes the PromptSaveAs command.
 func (c *PromptSaveAs) Run(v *backend.View, e *backend.Edit) error {
 	dir := viewDirectory(v)
 	fe := backend.GetEditor().Frontend()
@@ -58,7 +58,7 @@ func (c *PromptSaveAs) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the SaveAll command
+// Run executes the SaveAll command.
 func (c *SaveAll) Run(w *backend.Window) error {
 	fe := backend.GetEditor().Frontend()
 	for _, v := range w.Views() {

@@ -14,83 +14,83 @@ import (
 )
 
 type (
-	// Move Command moves the current selection
+	// Move Command moves the current selection.
 	Move struct {
 		backend.DefaultCommand
-		// Specifies the type of "move" operation
+		// Specifies the type of "move" operation.
 		By MoveByType
-		// Whether the current selection should be extended or not
+		// Whether the current selection should be extended or not.
 		Extend bool
-		// Whether to move forward or backwards
+		// Whether to move forward or backwards.
 		Forward bool
-		// Used together with By=Stops, extends "word_separators" defined by settings
+		// Used together with By=Stops, extends "word_separators" defined by settings.
 		Separators string
-		// Used together with By=Stops, go to word begin
+		// Used together with By=Stops, go to word begin.
 		WordBegin bool
-		// Used together with By=Stops, go to word end
+		// Used together with By=Stops, go to word end.
 		WordEnd bool
-		// Used together with By=Stops, go to punctuation begin
+		// Used together with By=Stops, go to punctuation begin.
 		PunctBegin bool
-		// Used together with By=Stops, go to punctuation end
+		// Used together with By=Stops, go to punctuation end.
 		PunctEnd bool
-		// Used together with By=Stops, go to an empty line
+		// Used together with By=Stops, go to an empty line.
 		EmptyLine bool
 		// Used together with By=Stops, TODO: ???
 		ClipToLine bool
 	}
 
-	// MoveByType Specifies the type of "move" operation
+	// MoveByType Specifies the type of "move" operation.
 	MoveByType int
 
-	// MoveToType Specifies the type of "move_to" operation to perform
+	// MoveToType Specifies the type of "move_to" operation to perform.
 	MoveToType int
 
-	// MoveTo Command moves or extends the current selection to the specified location
+	// MoveTo Command moves or extends the current selection to the specified location.
 	MoveTo struct {
 		backend.DefaultCommand
-		// The type of "move_to" operation to perform
+		// The type of "move_to" operation to perform.
 		To MoveToType
-		// Whether the current selection should be extended or not
+		// Whether the current selection should be extended or not.
 		Extend bool
 	}
 
-	// ScrollLines Command moves the viewpoint "Amount" lines from the current location
+	// ScrollLines Command moves the viewpoint "Amount" lines from the current location.
 	ScrollLines struct {
 		backend.BypassUndoCommand
-		// The number of lines to scroll (positive or negative direction)
+		// The number of lines to scroll (positive or negative direction).
 		Amount int
 	}
 )
 
 const (
-	// BOL is Beginning of line
+	// BOL is Beginning of line.
 	BOL MoveToType = iota
 	// EOL is End of line
 	EOL
-	//BOF is Beginning of file
+	//BOF is Beginning of file.
 	BOF
-	// EOF is End of file
+	// EOF is End of file.
 	EOF
-	// Brackets >-> Current level close bracket
+	// Brackets >-> Current level close bracket.
 	Brackets
 )
 
 const (
-	// Characters by Characters
+	// Characters by Characters.
 	Characters MoveByType = iota
-	// Stops will move by Stops (TODO(.): what exactly is a stop?)
+	// Stops will move by Stops (TODO(.): what exactly is a stop?).
 	Stops
-	// Lines will move by Lines
+	// Lines will move by Lines.
 	Lines
-	//Words will move by Words
+	//Words will move by Words.
 	Words
-	//WordEnds will move by Word Ends
+	//WordEnds will move by Word Ends.
 	WordEnds
-	//SubWords will move by Sub Words
+	//SubWords will move by Sub Words.
 	SubWords
-	// SubWordEnds will Move by Sub Word Ends
+	// SubWordEnds will Move by Sub Word Ends.
 	SubWordEnds
-	//Pages will move by Page
+	//Pages will move by Page.
 	Pages
 )
 
@@ -105,7 +105,7 @@ func moveAction(v *backend.View, extend bool, transform func(r text.Region) int)
 		} else if r[i].B > bs {
 			// Yes > the size, and not size-1 because the cursor being at "size"
 			// is the position it will be at when we are appending
-			// to the buffer
+			// to the buffer.
 			r[i].B = bs
 		}
 
@@ -136,7 +136,7 @@ func (mt *MoveToType) Set(v interface{}) error {
 	return nil
 }
 
-// Run will execute the MoveTo command
+// Run executes the MoveTo command.
 func (c *MoveTo) Run(v *backend.View, e *backend.Edit) error {
 	switch c.To {
 	case EOL:
@@ -226,7 +226,7 @@ func (c *MoveTo) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Set will set what type of move it is
+// Set the type of move.
 func (m *MoveByType) Set(v interface{}) error {
 	switch by := v.(string); by {
 	case "lines":
@@ -251,7 +251,7 @@ func (m *MoveByType) Set(v interface{}) error {
 	return nil
 }
 
-// Run will execute the Move command
+// Run executes the Move command.
 func (c *Move) Run(v *backend.View, e *backend.Edit) error {
 	p := util.Prof.Enter("move.run.action")
 	defer p.Exit()
@@ -342,7 +342,7 @@ func (c *Move) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Default returns the default seprators
+// Default returns the default seprators.
 func (c *Move) Default(key string) interface{} {
 	if key == "separators" {
 		return backend.DEFAULT_SEPARATORS
@@ -376,7 +376,7 @@ func reverse(s string) string {
 	return string(r)
 }
 
-// Run will execute the ScrollLines command
+// Run executes the ScrollLines command.
 func (c *ScrollLines) Run(v *backend.View, e *backend.Edit) error {
 	ed := backend.GetEditor()
 	fe := ed.Frontend()

@@ -7,32 +7,32 @@ package commands
 import "github.com/limetext/backend"
 
 type (
-	// Close command will close the currently opened view
+	// Close command closes the currently opened view.
 	Close struct {
 		backend.DefaultCommand
 	}
 
-	// NextView command will switch to the view which is
-	// immediately to the next of the current view
+	// NextView command switches to the view which is
+	// immediately to the next of the current view.
 	NextView struct {
 		backend.DefaultCommand
 	}
 
-	// PrevView command will switch to the view
-	// which is immediately before hte current view
+	// PrevView command switches to the view
+	// which is immediately before hte current view.
 	PrevView struct {
 		backend.DefaultCommand
 	}
 
 	// SetFileType command will let us set the file type
-	// for the currently active view, eg: for Syntax highlighting
+	// for the currently active view, eg: for Syntax highlighting.
 	SetFileType struct {
 		backend.DefaultCommand
 		Syntax string
 	}
 )
 
-// Run will execute the Close command
+// Run executes the Close command.
 func (c *Close) Run(w *backend.Window) error {
 	if v := w.ActiveView(); v != nil {
 		v.Close()
@@ -42,7 +42,7 @@ func (c *Close) Run(w *backend.Window) error {
 	return nil
 }
 
-// Run wll execute the NextView command
+// Run executes the NextView command.
 func (c *NextView) Run(w *backend.Window) error {
 	for i, v := range w.Views() {
 		if v == w.ActiveView() {
@@ -58,7 +58,7 @@ func (c *NextView) Run(w *backend.Window) error {
 	return nil
 }
 
-// Run will execute the PrevView command
+// Run executes the PrevView command.
 func (c *PrevView) Run(w *backend.Window) error {
 	for i, v := range w.Views() {
 		if v == w.ActiveView() {
@@ -74,7 +74,7 @@ func (c *PrevView) Run(w *backend.Window) error {
 	return nil
 }
 
-// Run will execute the SetFileType command
+// Run executes the SetFileType command.
 func (c *SetFileType) Run(v *backend.View, e *backend.Edit) error {
 	v.SetSyntaxFile(c.Syntax)
 	return nil

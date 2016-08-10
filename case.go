@@ -16,7 +16,7 @@ type (
 	// to be in Title Case.  For instance, the text:
 	// "this is some sample text"
 	// turns in to:
-	// "This Is Some Sample Text"
+	// "This Is Some Sample Text".
 	TitleCase struct {
 		backend.DefaultCommand
 	}
@@ -26,7 +26,7 @@ type (
 	// is the opposite case.  For example, the text:
 	// "Hello, World!"
 	// turns in to:
-	// "hELLO, wORLD!"
+	// "hELLO, wORLD!".
 	SwapCase struct {
 		backend.DefaultCommand
 	}
@@ -40,13 +40,13 @@ type (
 
 	// LowerCase Command transforms all selections
 	// so that each character in the selection
-	// is in its lower case equivalent
+	// is in its lower case equivalent.
 	LowerCase struct {
 		backend.DefaultCommand
 	}
 )
 
-// Run will execute the TitleCase command
+// Run executes the TitleCase command.
 func (c *TitleCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -59,7 +59,7 @@ func (c *TitleCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the SwapCase command
+// Run executes the SwapCase command.
 func (c *SwapCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -81,7 +81,7 @@ func (c *SwapCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the UpperCase command
+// Run executes the UpperCase command.
 func (c *UpperCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -94,7 +94,7 @@ func (c *UpperCase) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the LowerCase command
+// Run executes the LowerCase command.
 func (c *LowerCase) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {

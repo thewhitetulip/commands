@@ -34,14 +34,14 @@ type (
 	}
 
 	// DeleteWord Command deletes one word to right or left
-	// depending on forward variable
+	// depending on forward variable.
 	DeleteWord struct {
 		backend.DefaultCommand
 		Forward bool
 	}
 )
 
-// Run will execute the Insert command
+// Run executes the Insert command.
 func (c *Insert) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -55,7 +55,7 @@ func (c *Insert) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run executes the LeftDelete command
+// Run executes the LeftDelete command.
 func (c *LeftDelete) Run(v *backend.View, e *backend.Edit) error {
 	trimSpace := false
 	tabSize := 4
@@ -102,7 +102,7 @@ func (c *LeftDelete) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the RightDelete command
+// Run executes the RightDelete command.
 func (c *RightDelete) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	hasNonEmpty := sel.HasNonEmpty()
@@ -125,7 +125,7 @@ func (c *RightDelete) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the DeleteWord command
+// Run executes the DeleteWord command.
 func (c *DeleteWord) Run(v *backend.View, e *backend.Edit) error {
 	var class int
 	if c.Forward {

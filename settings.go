@@ -58,7 +58,7 @@ type toggleSetting struct {
 	backend.BypassUndoCommand
 }
 
-// Run will execute the ToggleSetting command
+// Run executes the ToggleSetting command
 func (c *ToggleSetting) Run(v *backend.View, e *backend.Edit) error {
 	setting := c.Setting
 	prev, boolean := v.Settings().Get(setting, false).(bool)
@@ -67,14 +67,14 @@ func (c *ToggleSetting) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the SetSetting command
+// Run executes the SetSetting command
 func (c *SetSetting) Run(v *backend.View, e *backend.Edit) error {
 	setting := c.Setting
 	v.Settings().Set(setting, c.Value)
 	return nil
 }
 
-// Run will execute the
+// Run executes the
 func (t *toggleSetting) Run(w *backend.Window) error {
 	res, ok := w.Settings().Get(t.name, false).(bool)
 	w.Settings().Set(t.name, !ok || !res)

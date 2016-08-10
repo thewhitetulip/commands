@@ -10,26 +10,26 @@ import (
 
 type (
 
-	// Undo command will revert the last change
+	// Undo command will revert the last change.
 	Undo struct {
 		backend.BypassUndoCommand
 		hard bool
 	}
 
-	// Redo command will redo the last chnage
+	// Redo command will redo the last chnage.
 	Redo struct {
 		backend.BypassUndoCommand
 		hard bool
 	}
 )
 
-// Run will execute the Undo command
+// Run executes the Undo command.
 func (c *Undo) Run(v *backend.View, e *backend.Edit) error {
 	v.UndoStack().Undo(c.hard)
 	return nil
 }
 
-// Run will execute the Redo command
+// Run executes the Redo command.
 func (c *Redo) Run(v *backend.View, e *backend.Edit) error {
 	v.UndoStack().Redo(c.hard)
 	return nil

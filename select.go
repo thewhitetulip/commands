@@ -16,13 +16,13 @@ type (
 		backend.DefaultCommand
 	}
 	// SelectAll command selects the whole buffer of
-	// the current file
+	// the current file.
 	SelectAll struct {
 		backend.DefaultCommand
 	}
 )
 
-// Run will execute the SingleSelection command
+// Run executes the SingleSelection command.
 func (c *SingleSelection) Run(v *backend.View, e *backend.Edit) error {
 	/*
 		Correct behavior of SingleSelect:
@@ -35,7 +35,7 @@ func (c *SingleSelection) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run will execute the SelectAll command
+// Run executes the SelectAll command.
 func (c *SelectAll) Run(v *backend.View, e *backend.Edit) error {
 	/*
 		Correct behavior of SelectAll:

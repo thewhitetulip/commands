@@ -21,23 +21,23 @@ type (
 	}
 )
 
-// Run will execute the NopApplication command
+// Run executes the NopApplication command.
 func (c *NopApplication) Run() error {
 	return nil
 }
 
-// IsChecked will represent if the command will
-// contain a checkbox in the UI
+// IsChecked will represent if the command
+// contains a checkbox in the frontend
 func (c *NopApplication) IsChecked() bool {
 	return false
 }
 
-// Run will execute the NopWindow command
+// Run executes the NopWindow command.
 func (c *NopWindow) Run(w *backend.Window) error {
 	return nil
 }
 
-// Run will execute the NopText command
+// Run executes the NopText command.
 func (c *NopText) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
