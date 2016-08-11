@@ -94,7 +94,7 @@ func (c *Cut) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run executes the Paste command when initialized
+// Run executes the Paste command
 func (c *Paste) Run(v *backend.View, e *backend.Edit) error {
 	// TODO: Paste the entire line on the line before the cursor if a
 	//		 line was autocopied.

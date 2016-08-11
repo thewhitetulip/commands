@@ -18,33 +18,31 @@ type (
 		backend.DefaultCommand
 	}
 
-	//SelectLines command will select the lines.
+	// SelectLines makes the selection fill the lines
+	// covered by it currently
 	SelectLines struct {
 		backend.DefaultCommand
 		Forward bool
 	}
-
-	//SwapLineUp command will swap the current line
-	//with the line immediately above it until the
-	//line reaches the top.
+	// SwapLineUp swaps the currently selected lines with the ones above
 	SwapLineUp struct {
 		backend.DefaultCommand
 	}
 
-	//SwapLineDown command will swap the current line
-	//with the line immediately below it until it reaches bottom.
+	// SwapLineDown swaps the currently selected
+	// lines with the ones below
 	SwapLineDown struct {
 		backend.DefaultCommand
 	}
 
-	//SplitSelectionIntoLines will split the current
-	//selection into lines.
+	// SplitSelectionIntoLines will split the current
+	// selection into lines.
 	SplitSelectionIntoLines struct {
 		backend.DefaultCommand
 	}
 )
 
-//Run executes the JoinLines command.
+// Run executes the JoinLines command.
 func (c *JoinLines) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -81,7 +79,7 @@ func (c *JoinLines) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run executes the SwapLineUp command.
+// Run executes the SwapLineUp command.
 func (c *SwapLineUp) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -101,7 +99,7 @@ func (c *SwapLineUp) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run executes the SwapLineDown command.
+// Run executes the SwapLineDown command.
 func (c *SwapLineDown) Run(v *backend.View, e *backend.Edit) error {
 	sel := v.Sel()
 	for i := 0; i < sel.Len(); i++ {
@@ -121,7 +119,7 @@ func (c *SwapLineDown) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-//Run executes the SelectLines command.
+// Run executes the SelectLines command.
 func (c *SelectLines) Run(v *backend.View, e *backend.Edit) error {
 	var (
 		rs      []text.Region
