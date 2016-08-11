@@ -6,6 +6,10 @@
 
 This package contains commands made accessible to frontends and plugins. They come in three flavours: [`ApplicationCommand`](https://godoc.org/github.com/limetext/backend#ApplicationCommand)s, [`WindowCommand`](https://godoc.org/github.com/limetext/backend#WindowCommand)s, and [`TextCommand`](https://godoc.org/github.com/limetext/backend#TextCommand)s."
 
+#Goals
+
+The Goal is to implement all the commands present in Sublimetext.
+
 ##Brief overview of Commands
 
 You first build a type of the command which you are writing. 
@@ -18,7 +22,7 @@ You first build a type of the command which you are writing.
         }
     )
 
-Each command has a `Run` method which is executed when the command is invoked. Please note that the command needs to be invoked by the frontend for it to work.
+Each command has a `Run` method which is executed when the command is invoked.
 
     //Run executes the DoSomething command
     func (c *DoSomething) Run(v *backend.View, e *backend.Edit) error {

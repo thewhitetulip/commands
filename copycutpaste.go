@@ -13,20 +13,24 @@ import (
 )
 
 type (
-	// Copy copies the current selection to the clipboard.
-	// since Lime has multiple selection, and Copy concatenates selections,
-	// top to bottom of the file, inserting a newline between each
+	// Copy copies the current selection to the clipboard. If there
+	// are multiple selections, they are concatenated in order from
+	// top to bottom of the file, separated by newlines
 	Copy struct {
 		backend.DefaultCommand
 	}
 
-	// Cut copies the current selection to the clipboard and removes it from the buffer
+	// Cut copies the current selection to the clipboard, removing it from the buffer.
+	// If there are multiple selections, they are concatenated in order from top to
+	// bottom of the file, separated by newlines.
 	Cut struct {
 		backend.DefaultCommand
 	}
 
-	// Paste command paste the clipboard
-	// contents into a view.
+	// Paste pastes the contents of the clipboard, overwriting the current selection,
+	// if any. If there are multiple selections, the clipboard is split into lines.
+	// If the number of lines equals the number of selections, the lines are pasted
+	// separately into each selection in order from top to bottom of the file.
 	Paste struct {
 		backend.DefaultCommand
 	}
