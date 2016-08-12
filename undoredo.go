@@ -9,7 +9,6 @@ import (
 )
 
 type (
-
 	Undo struct {
 		backend.BypassUndoCommand
 		hard bool

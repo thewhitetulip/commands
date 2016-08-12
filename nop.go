@@ -7,15 +7,15 @@ package commands
 import "github.com/limetext/backend"
 
 type (
-	// NopApplication is
+	// NopApplication performs NOP.
 	NopApplication struct {
 		backend.BypassUndoCommand
 	}
-	// NopWindow is
+	// NopWindow performs NOP.
 	NopWindow struct {
 		backend.BypassUndoCommand
 	}
-	// NopText is
+	// NopText performs NOP.
 	NopText struct {
 		backend.BypassUndoCommand
 	}
@@ -26,7 +26,7 @@ func (c *NopApplication) Run() error {
 	return nil
 }
 
-// IsChecked will represent if the command
+// IsChecked represents if the command
 // contains a checkbox in the frontend
 func (c *NopApplication) IsChecked() bool {
 	return false

@@ -25,7 +25,7 @@ type (
 		backend.DefaultCommand
 	}
 
-	// SaveAll command saves all the opene files to the disk.
+	// SaveAll command saves all the open files to the disk.
 	SaveAll struct {
 		backend.DefaultCommand
 	}

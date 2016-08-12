@@ -8,7 +8,7 @@ This package contains commands made accessible to frontends and plugins. They co
 
 #Goals
 
-The Goal is to implement all the commands present in Sublimetext.
+The goal for release 1.0 is to implement all Sublime Text commands.
 
 ##Brief overview of Commands
 
