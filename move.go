@@ -82,15 +82,15 @@ const (
 	Stops
 	// Lines will move by Lines.
 	Lines
-	//Words will move by Words.
+	// Words will move by Words.
 	Words
-	//WordEnds will move by Word Ends.
+	// WordEnds will move by Word Ends.
 	WordEnds
-	//SubWords will move by Sub Words.
+	// SubWords will move by Sub Words.
 	SubWords
 	// SubWordEnds will Move by Sub Word Ends.
 	SubWordEnds
-	//Pages will move by Page.
+	// Pages will move by Page.
 	Pages
 )
 
