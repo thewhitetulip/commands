@@ -23,17 +23,17 @@ type (
 
 	// ToggleSideBar Command enables us to toggle the sidebar
 	// when the sidebar is visible, it'll be made invisible
-	// and vice versa
+	// and vice versa.
 	ToggleSideBar struct {
 		toggleSetting
 	}
 
-	//ToggleStatusBar command enables us to toggle the status bar
+	// ToggleStatusBar command enables us to toggle the status bar.
 	ToggleStatusBar struct {
 		toggleSetting
 	}
 
-	//ToggleFullScreen command enables us to toggle full screen
+	// ToggleFullScreen command enables us to toggle full screen.
 	ToggleFullScreen struct {
 		toggleSetting
 	}
@@ -51,14 +51,14 @@ type (
 	}
 )
 
-// helper struct for commands that just toggle a simple setting
+// helper struct for commands that just toggle a simple setting.
 type toggleSetting struct {
-	// the setting name which we are going to toggle
+	// the setting name which we are going to toggle.
 	name string
 	backend.BypassUndoCommand
 }
 
-// Run executes the ToggleSetting command
+// Run executes the ToggleSetting command.
 func (c *ToggleSetting) Run(v *backend.View, e *backend.Edit) error {
 	setting := c.Setting
 	prev, boolean := v.Settings().Get(setting, false).(bool)
@@ -67,14 +67,13 @@ func (c *ToggleSetting) Run(v *backend.View, e *backend.Edit) error {
 	return nil
 }
 
-// Run executes the SetSetting command
+// Run executes the SetSetting command.
 func (c *SetSetting) Run(v *backend.View, e *backend.Edit) error {
 	setting := c.Setting
 	v.Settings().Set(setting, c.Value)
 	return nil
 }
 
-// Run executes the
 func (t *toggleSetting) Run(w *backend.Window) error {
 	res, ok := w.Settings().Get(t.name, false).(bool)
 	w.Settings().Set(t.name, !ok || !res)
