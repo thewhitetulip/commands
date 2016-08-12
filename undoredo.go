@@ -10,13 +10,11 @@ import (
 
 type (
 
-	// Undo command will revert the last change.
 	Undo struct {
 		backend.BypassUndoCommand
 		hard bool
 	}
 
-	// Redo command will redo the last chnage.
 	Redo struct {
 		backend.BypassUndoCommand
 		hard bool
